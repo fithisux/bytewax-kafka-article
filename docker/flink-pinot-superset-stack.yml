@@ -1,0 +1,124 @@
+# Command: docker stack deploy streaming-stack --compose-file docker/flink-pinot-superset-stack.yml
+# Gary A. Stafford (2022-09-14)
+# Updated: 2022-12-26
+
+version: "3.9"
+services:
+  zookeeper:
+    image: "zookeeper:3.8.0"
+    hostname: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+    networks:
+      - streaming-stack
+  pinot-controller:
+    image: "apachepinot/pinot:0.11.0-SNAPSHOT-a6f5e89-20221226"
+    command: "StartController -zkAddress zookeeper:2181"
+    ports:
+      - "9000:9000"
+    environment:
+      JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms1G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc:gc-pinot-controller.log"
+    depends_on:
+      - zookeeper
+    networks:
+      - streaming-stack
+  pinot-broker:
+    image: "apachepinot/pinot:0.11.0-SNAPSHOT-a6f5e89-20221226"
+    command: "StartBroker -zkAddress zookeeper:2181"
+    ports:
+      - "8099:8099"
+    environment:
+      JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms4G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc:gc-pinot-broker.log"
+    depends_on:
+      - pinot-controller
+    networks:
+      - streaming-stack
+  pinot-server:
+    image: "apachepinot/pinot:0.11.0-SNAPSHOT-a6f5e89-20221226"
+    command: "StartServer -zkAddress zookeeper:2181"
+    ports:
+      - "8098:8098"
+    environment:
+      JAVA_OPTS: "-Dplugins.dir=/opt/pinot/plugins -Xms4G -Xmx16G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc:gc-pinot-server.log"
+    depends_on:
+      - pinot-broker
+    networks:
+      - streaming-stack
+  kafka:
+    image: "bitnami/kafka:3.3.1"
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 0
+      KAFKA_CFG_LISTENERS: "PLAINTEXT://:9092,PLAINTEXT_HOST://:29092"
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: "PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"
+      KAFKA_CFG_ADVERTISED_LISTENERS: "PLAINTEXT://127.0.0.1:9092,PLAINTEXT_HOST://kafka:29092"
+      KAFKA_CFG_ZOOKEEPER_CONNECT: "zookeeper:2181/kafka"
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_CFG_ADVERTISED_HOST_NAME: "kafka"
+    depends_on:
+      - zookeeper
+    networks:
+      - streaming-stack
+  superset:
+    image: "garystafford/superset-pinot:0.13.0"
+    ports:
+      - "8088:8088"
+#    volumes:
+#      - "/tmp/config.py:/app/superset/config.py"
+    networks:
+      - streaming-stack
+  jupyter:
+    image: "jupyter/pyspark-notebook:spark-3.3.1"
+    ports:
+      - "8888:8888"
+      - "4040-4045:4040-4045"
+    user: root
+    environment:
+      NB_GID: 100
+      GRANT_SUDO: "yes"
+    volumes:
+      - "${PWD}:/home/jovyan/work"
+    networks:
+      - streaming-stack
+  jobmanager:
+    image: "flink:1.16.0"
+    command: jobmanager
+    ports:
+      - "8081:8081"
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+    networks:
+      - streaming-stack
+  taskmanager:
+    image: "flink:1.16-scala_2.12-java11"
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2
+    networks:
+      - streaming-stack
+  kafka-ui:
+    image: "provectuslabs/kafka-ui:5f4bb43afd3a516176db481944fb5adb3178a40e"
+    ports:
+      - "9080:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=streaming-demo
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
+    depends_on:
+      - kakfa
+    networks:
+      - streaming-stack
+
+networks:
+  streaming-stack:
