@@ -4,21 +4,10 @@
 # Instructions: Modify the configuration.ini file to meet your requirements.
 #               Select the topic to view the messages from.
 
-import configparser
 import json
-
 from kafka import KafkaConsumer
-
-from config.kafka import get_configs
-
-config = configparser.ConfigParser()
-config.read("configuration/configuration.ini")
-
-# *** CONFIGURATION ***
-topic_products = config["KAFKA"]["topic_products"]
-topic_purchases = config["KAFKA"]["topic_purchases"]
-topic_inventories = config["KAFKA"]["topic_inventories"]
-
+from configuration_logic import kafkaparams
+import dataclasses
 
 def main():
     consume_messages()
@@ -27,15 +16,15 @@ def main():
 def consume_messages():
     # choose any or all topics
     # topics = (topic_purchases)
-    topics = (topic_products, topic_purchases, topic_inventories)
+    kafka_config = kafkaparams.configuration.get_config()
 
-    configs = get_configs()
+    topics = (kafka_config.topic_products, kafka_config.topic_purchases, kafka_config.topic_inventories)
 
     consumer = KafkaConsumer(
         *topics,
         value_deserializer=lambda m: json.loads(m.decode("utf-8")),
         auto_offset_reset="earliest",
-        **configs
+        **dataclasses.asdict(kafka_config)
     )
 
     for message in consumer:

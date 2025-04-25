@@ -25,6 +25,7 @@ def generate_traffic():
     )
 
     for product in products:
+        print(f"Publishing {product}")
         publish_to_kafka(kafka_config.topic_products, product)
 
     for _ in range(0, traffic_config.number_of_sales):
@@ -32,8 +33,10 @@ def generate_traffic():
             products, generator_config
         )
         if new_purchase is not None:
+            print(f"Publishing {new_purchase}")
             publish_to_kafka(kafka_config.topic_purchases, new_purchase)
         if new_inventory is not None:
+            print(f"Publishing {new_inventory}")
             publish_to_kafka(kafka_config.topic_inventories, new_inventory)
 
         time.sleep(random.randint(traffic_config.min_sale_freq, traffic_config.max_sale_freq))
