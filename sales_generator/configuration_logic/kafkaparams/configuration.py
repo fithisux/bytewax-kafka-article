@@ -1,17 +1,22 @@
 import configparser
 from pathlib import Path
 from dataclasses import dataclass
+from typing import Dict, Any
 
 @dataclass
-class KafkaConfig:
+class KafkaConnectionConfig:
     bootstrap_servers: str
-    topic_products: str
-    topic_purchases: str
-    topic_inventories: str
     security_protocol: str | None = None
     sasl_mechanism: str | None = None
     sasl_plain_username: str | None = None
     sasl_plain_password: str | None = None
+
+@dataclass
+class KafkaConfig:
+    kafka_connection_config: KafkaConnectionConfig
+    topic_products: str
+    topic_purchases: str
+    topic_inventories: str
 
 
 
@@ -22,23 +27,18 @@ def get_config() -> KafkaConfig:
     config.read(config_path / "configuration.ini")
 
     bootstrap_servers = config["KAFKA"]["bootstrap_servers"]
-    auth_method = config["KAFKA"]["auth_method"]
-    sasl_username = config["KAFKA"]["sasl_username"]
-    sasl_password = config["KAFKA"]["sasl_password"]
+    configs: Dict[str, str] = {"bootstrap_servers": bootstrap_servers}
+    configs["security_protocol"] = "PLAINTEXT"
 
-    configs = {"bootstrap_servers": bootstrap_servers}
+    kafka_connection_config: KafkaConnectionConfig = KafkaConnectionConfig(**configs)
 
-    if auth_method == "sasl_scram":
-        configs["security_protocol"] = "SASL_SSL"
-        configs["sasl_mechanism"] = "SCRAM-SHA-512"
-        configs["sasl_plain_username"] = sasl_username
-        configs["sasl_plain_password"] = sasl_password
+    extra_configs: Dict[str, Any] = {'kafka_connection_config' : kafka_connection_config}
 
-    configs['topic_products'] = config["KAFKA"]["topic_products"]
-    configs['topic_purchases'] = config["KAFKA"]["topic_purchases"]
-    configs['topic_inventories'] = config["KAFKA"]["topic_inventories"]
+    extra_configs['topic_products'] = config["KAFKA"]["topic_products"]
+    extra_configs['topic_purchases'] = config["KAFKA"]["topic_purchases"]
+    extra_configs['topic_inventories'] = config["KAFKA"]["topic_inventories"]
 
 
     # print("configs: {0}".format(str(configs)))
 
-    return KafkaConfig(**configs)
+    return KafkaConfig(**extra_configs)

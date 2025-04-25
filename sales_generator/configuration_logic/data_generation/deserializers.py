@@ -48,9 +48,9 @@ def generator_configuration_data_testing(generator_config: modeling.GeneratorCon
         raise exceptions.NonPositiveMinInventoryException()
     if(generator_config.restock_amount <= 0):
         raise exceptions.NonPositiveRestockAmountException()
-    if( (generator_config.club_member_discount < 0) or (generator_config.club_member_discount > 0) ):
+    if( (generator_config.club_member_discount < 0) or (generator_config.club_member_discount > 1) ):
         raise exceptions.NonPercentageClubMemberDiscountException()
-    if( (generator_config.is_member_prob < 0) or (generator_config.is_member_prob > 0) ):
+    if( (generator_config.is_member_prob < 0) or (generator_config.is_member_prob > 1) ):
         raise exceptions.NonProbabilityIsMemberProbException()
     if(generator_config.supplements_cost <= 0):
         raise exceptions.NonPositiveSupplementsCostException()

@@ -10,7 +10,7 @@ import random
 def publish_to_kafka(topic, message, kafka_config: KafkaConfig):
     producer = KafkaProducer(
         value_serializer=lambda v: json.dumps(v, default=str).encode("utf-8"),
-        **dataclasses.asdict(kafka_config),
+        **dataclasses.asdict(kafka_config.kafka_connection_config),
     )
     key = topic.split(".")[1]
     producer.send(topic, key=key.encode("utf-8"), value=message)

@@ -12,7 +12,8 @@ def main():
     ##
     ## from https://stackoverflow.com/questions/26021541/how-to-programmatically-create-a-topic-in-apache-kafka-using-python
     ##
-    kafka_admin = confluent_kafka.admin.AdminClient(dataclasses.asdict(kafka_config))
+    print(dataclasses.asdict(kafka_config))
+    kafka_admin = confluent_kafka.admin.AdminClient({'bootstrap.servers': kafka_config.kafka_connection_config.bootstrap_servers})
 
     existing_topics = kafka_admin.list_topics().topics
 
@@ -27,7 +28,8 @@ def main():
     if kafka_config.topic_inventories in existing_topics:
         topics_to_delete.append(kafka_config.topic_inventories)
 
-    kafka_admin.delete_topics(topics_to_delete)
+    if len(topics_to_delete) != 0:
+        kafka_admin.delete_topics(topics_to_delete)
 
     new_topic_products = confluent_kafka.admin.NewTopic(
         kafka_config.topic_products, 1, 1

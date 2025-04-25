@@ -64,6 +64,7 @@ def deserialize_product_list(min_inventory_level: int) -> List[modeling.Product]
     with open(Path(__file__).parent / "products.csv", "r", newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
+            print(f"ROW is {row}")
             product = product_schema_enforcement(row)
             product_data_testing(product, min_inventory_level)
             products.append(product)

@@ -1,4 +1,4 @@
-﻿ID,Category,Item,Size,COGS,Price,Inventory,ContainsFruit,ContainsVeggies,ContainsNuts,ContainsCaffeine,PropensityToBuy,PropensityToAddSuplement
+ID,Category,Item,Size,COGS,Price,Inventory,ContainsFruit,ContainsVeggies,ContainsNuts,ContainsCaffeine,PropensityToBuy,PropensityToAddSuplement
 CS01,Classic Smoothies,Sunrise Sunset,24.0 oz.,1.50,4.99,75,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
 CS02,Classic Smoothies,Kiwi Quencher,24.0 oz.,1.50,4.99,75,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
 CS03,Classic Smoothies,Paradise Point,24.0 oz.,1.50,4.99,75,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
