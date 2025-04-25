@@ -6,7 +6,7 @@ from business_logic.domain import modeling, exceptions
 
 # convert uppercase boolean values from CSV file to Python
 def to_bool(value):
-    if type(value) == str and str(value).lower() == "true":
+    if type(value) is str and str(value).lower() == "true":
         return True
     return False
 

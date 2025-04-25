@@ -1,8 +1,22 @@
 import configparser
 from configuration_logic import kafka
 from pathlib import Path
+from dataclasses import dataclass
 
-def get_configs():
+@dataclass
+class KafkaConfig:
+    bootstrap_servers: str
+    topic_products: str
+    topic_purchases: str
+    topic_inventories: str
+    security_protocol: str | None = None
+    sasl_mechanism: str | None = None
+    sasl_plain_username: str | None = None
+    sasl_plain_password: str | None = None
+
+
+
+def get_config() -> KafkaConfig:
     config = configparser.ConfigParser()
 
     config_path = Path(kafka.__file__).parent
@@ -28,4 +42,4 @@ def get_configs():
 
     # print("configs: {0}".format(str(configs)))
 
-    return configs
+    return KafkaConfig(**configs)

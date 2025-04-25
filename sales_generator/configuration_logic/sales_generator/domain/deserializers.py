@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Tuple
 
 
-def get_config() -> Tuple[modeling.GeneratorConfig, modeling.TrafficConfig]:
+def deserialize() -> Tuple[modeling.GeneratorConfig, modeling.TrafficConfig]:
     config = configparser.ConfigParser()
 
     config_path = Path(sales_generator.__file__).parent
@@ -91,9 +91,3 @@ def traffic_configuration_data_testing(traffic_config: modeling.TrafficConfig) -
 
     if(traffic_config.max_sale_freq < traffic_config.min_sale_freq):
         raise exceptions.MinMaxSaleFrequencyException()
-
-
-def configuration_data_testing(generator_config: modeling.GeneratorConfig, traffic_config: modeling.TrafficConfig) -> None:
-    generator_configuration_data_testing(generator_config)
-    traffic_configuration_data_testing(traffic_config)
- 

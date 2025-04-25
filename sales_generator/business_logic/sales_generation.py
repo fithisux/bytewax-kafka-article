@@ -12,12 +12,11 @@ def generate_choice_from_weights(weights: List[int]) -> int:
     return random.choices(population, weights, k=1)[0]
 
 
-def generate_sales(
+def generate_sale(
     products: List[modeling.Product], generator_config: GeneratorConfig
-) -> Optional[Tuple[modeling.Purchase, Optional[modeling.Inventory]]]:
+) ->Tuple[Optional[modeling.Purchase], Optional[modeling.Inventory]]:
 
-    sorted_products = products.sort(key=lambda product: product.propensity_to_buy)
-    propensities = [product.propensity_to_buy for product in sorted_products]
+    propensities = [product.propensity_to_buy for product in products]
     transaction_time = datetime.now()
     is_member = generator_config.is_member_prob <= random.random()
     member_discount = generator_config.club_member_discount if is_member else 0.00
@@ -25,7 +24,7 @@ def generate_sales(
 
     for _ in range(0, items):
         # reduces but not eliminates risk of duplicate products in same transaction - TODO: improve this method
-        product = random.choices(sorted_products, propensities)[0]
+        product = random.choices(products, propensities)[0]
         quantity = 1 + generate_choice_from_weights(
             generator_config.transaction_quantity_weights
         )
@@ -46,7 +45,7 @@ def generate_sales(
         new_inventory = fix_product_inventory(product, generator_config)
         return (new_purchase, new_inventory)
 
-    return None  # should never reach here
+    return (None,None)  # should never reach here
 
 
 def fix_product_inventory(
