@@ -6,25 +6,26 @@
 
 import json
 from kafka import KafkaConsumer
-from configuration_logic import kafkaparams
+from sales_generator.configuration_logic import kafkaparams
 import dataclasses
 
+
 def main():
-    consume_messages()
-
-
-def consume_messages():
     # choose any or all topics
     # topics = (topic_purchases)
     kafka_config = kafkaparams.configuration.get_config()
 
-    topics = (kafka_config.topic_products, kafka_config.topic_purchases, kafka_config.topic_inventories)
+    topics = (
+        kafka_config.topic_products,
+        kafka_config.topic_purchases,
+        kafka_config.topic_inventories,
+    )
 
     consumer = KafkaConsumer(
         *topics,
         value_deserializer=lambda m: json.loads(m.decode("utf-8")),
         auto_offset_reset="earliest",
-        **dataclasses.asdict(kafka_config)
+        **dataclasses.asdict(kafka_config),
     )
 
     for message in consumer:
