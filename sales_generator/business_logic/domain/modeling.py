@@ -3,7 +3,7 @@ from datetime import datetime
 
 @dataclass
 class Inventory:
-    event_time: str
+    event_time: datetime
     product_id: str
     existing_level: int
     stock_quantity: int
@@ -31,7 +31,7 @@ class Product:
 
 @dataclass
 class Purchase:
-    transaction_time: str
+    transaction_time: datetime
     transaction_id: str
     product_id: str
     price: float

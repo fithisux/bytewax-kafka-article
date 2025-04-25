@@ -1,6 +1,5 @@
 import configparser
-from configuration_logic import sales_generator
-from configuration_logic.sales_generator.domain import modeling, exceptions
+from sales_generator.configuration_logic.data_generation.domain import modeling, exceptions
 from pathlib import Path
 from typing import Tuple
 
@@ -8,7 +7,7 @@ from typing import Tuple
 def deserialize() -> Tuple[modeling.GeneratorConfig, modeling.TrafficConfig]:
     config = configparser.ConfigParser()
 
-    config_path = Path(sales_generator.__file__).parent
+    config_path = Path(__file__).parent
     config.read(config_path / "configuration.ini")
     min_sale_freq = int(config["SALES"]["min_sale_freq"])
     max_sale_freq = int(config["SALES"]["max_sale_freq"])

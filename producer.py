@@ -12,7 +12,7 @@ def main():
     ##
     ## from https://stackoverflow.com/questions/26021541/how-to-programmatically-create-a-topic-in-apache-kafka-using-python
     ##
-    kafka_admin = confluent_kafka.admin.AdminClient(**dataclasses.asdict(kafka_config))
+    kafka_admin = confluent_kafka.admin.AdminClient(dataclasses.asdict(kafka_config))
 
     existing_topics = kafka_admin.list_topics().topics
 

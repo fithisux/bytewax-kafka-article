@@ -25,7 +25,7 @@ def main():
         *topics,
         value_deserializer=lambda m: json.loads(m.decode("utf-8")),
         auto_offset_reset="earliest",
-        **dataclasses.asdict(kafka_config),
+        dataclasses.asdict(kafka_config),
     )
 
     for message in consumer:

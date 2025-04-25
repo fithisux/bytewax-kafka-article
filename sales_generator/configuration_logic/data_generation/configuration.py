@@ -1,4 +1,6 @@
-from configuration_logic.sales_generator.domain import deserializers, modeling
+from sales_generator.configuration_logic.data_generation import deserializers
+from sales_generator.configuration_logic.data_generation.domain import modeling
+
 from typing import Tuple
 
 def get_config() -> Tuple[modeling.GeneratorConfig, modeling.TrafficConfig] :

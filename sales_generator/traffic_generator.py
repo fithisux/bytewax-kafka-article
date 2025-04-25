@@ -1,12 +1,13 @@
-from configuration_logic import sales_generator, kafkaparams
-from business_logic import domain, sales_generation
+from sales_generator.configuration_logic.data_generation import configuration
+from sales_generator.configuration_logic.kafkaparams.configuration import KafkaConfig
+from sales_generator.business_logic import sales_generation, deserializers
 from kafka import KafkaProducer
 import json
 import dataclasses
 import time
 import random
 
-def publish_to_kafka(topic, message, kafka_config: kafkaparams.KafkaConfig):
+def publish_to_kafka(topic, message, kafka_config: KafkaConfig):
     producer = KafkaProducer(
         value_serializer=lambda v: json.dumps(v, default=str).encode("utf-8"),
         **dataclasses.asdict(kafka_config),
@@ -16,10 +17,10 @@ def publish_to_kafka(topic, message, kafka_config: kafkaparams.KafkaConfig):
     print("Topic: {0}, Value: {1}".format(topic, message))
 
 
-def generate_traffic(kafka_config: kafkaparams.KafkaConfig):
-    generator_config, traffic_config = sales_generator.get_config()
+def generate_traffic(kafka_config: KafkaConfig):
+    generator_config, traffic_config = configuration.get_config()
 
-    products = domain.deserializers.deserialize_product_list(
+    products = deserializers.deserialize_product_list(
         generator_config.min_inventory
     )
 

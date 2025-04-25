@@ -1,5 +1,4 @@
 import configparser
-from configuration_logic import kafka
 from pathlib import Path
 from dataclasses import dataclass
 
@@ -19,7 +18,7 @@ class KafkaConfig:
 def get_config() -> KafkaConfig:
     config = configparser.ConfigParser()
 
-    config_path = Path(kafka.__file__).parent
+    config_path = Path(__file__).parent
     config.read(config_path / "configuration.ini")
 
     bootstrap_servers = config["KAFKA"]["bootstrap_servers"]
@@ -35,9 +34,9 @@ def get_config() -> KafkaConfig:
         configs["sasl_plain_username"] = sasl_username
         configs["sasl_plain_password"] = sasl_password
 
-    config['topic_products'] = config["KAFKA"]["topic_products"]
-    config['topic_purchases'] = config["KAFKA"]["topic_purchases"]
-    config['topic_inventories'] = config["KAFKA"]["topic_inventories"]
+    configs['topic_products'] = config["KAFKA"]["topic_products"]
+    configs['topic_purchases'] = config["KAFKA"]["topic_purchases"]
+    configs['topic_inventories'] = config["KAFKA"]["topic_inventories"]
 
 
     # print("configs: {0}".format(str(configs)))

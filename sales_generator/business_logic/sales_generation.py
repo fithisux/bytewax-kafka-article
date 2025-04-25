@@ -1,5 +1,5 @@
-from business_logic.domain import modeling
-from configuration_logic.sales_generator.domain.modeling import GeneratorConfig
+from sales_generator.business_logic.domain import modeling
+from sales_generator.configuration_logic.data_generation.domain.modeling import GeneratorConfig
 from typing import List, Optional, Tuple
 import random
 from datetime import datetime
@@ -55,7 +55,7 @@ def fix_product_inventory(
     if product.inventory_level < generator_config.min_inventory:
         new_level = product.inventory_level + generator_config.restock_amount
         new_inventory = modeling.Inventory(
-            str(datetime.now()),
+            datetime.now(),
             product.product_id,
             product.inventory_level,
             generator_config.restock_amount,

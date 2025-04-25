@@ -2,7 +2,8 @@
 import csv
 from typing import Dict, List, Any
 from datetime import datetime
-from business_logic.domain import modeling, exceptions
+from sales_generator.business_logic.domain import modeling, exceptions
+from pathlib import Path
 
 # convert uppercase boolean values from CSV file to Python
 def to_bool(value):
@@ -60,7 +61,7 @@ def products_data_testing(silver_products: List[modeling.Product]) -> None:
 
 def deserialize_product_list(min_inventory_level: int) -> List[modeling.Product]:
     products : List[modeling.Product] = []
-    with open("data/products.csv", "r", newline='') as csvfile:
+    with open(Path(__file__).parent / "products.csv", "r", newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             product = product_schema_enforcement(row)
