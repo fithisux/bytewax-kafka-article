@@ -1,11 +1,11 @@
 import configparser
-import kafka_config
+from configuration_logic import kafka
 from pathlib import Path
 
 def get_configs():
     config = configparser.ConfigParser()
 
-    config_path = Path(kafka_config.__file__).parent
+    config_path = Path(kafka.__file__).parent
     config.read(config_path / "configuration.ini")
 
     bootstrap_servers = config["KAFKA"]["bootstrap_servers"]

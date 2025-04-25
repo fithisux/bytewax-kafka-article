@@ -69,6 +69,15 @@ def generator_configuration_data_testing(generator_config: modeling.GeneratorCon
         if(weight <= 0):
             raise exceptions.NonPositiveTransactionQuantityWeightException()
 
+    
+    if len(generator_config.transaction_quantity_weights) > generator_config.min_inventory:
+        raise exceptions.QuantityAboveInventoryException()
+
+
+    if generator_config.restock_amount < generator_config.min_inventory:
+        raise exceptions.RestockAmoundBelowMinInventoryException()
+
+
 
 def traffic_configuration_data_testing(traffic_config: modeling.TrafficConfig) -> None:
     
@@ -82,3 +91,9 @@ def traffic_configuration_data_testing(traffic_config: modeling.TrafficConfig) -
 
     if(traffic_config.max_sale_freq < traffic_config.min_sale_freq):
         raise exceptions.MinMaxSaleFrequencyException()
+
+
+def configuration_data_testing(generator_config: modeling.GeneratorConfig, traffic_config: modeling.TrafficConfig) -> None:
+    generator_configuration_data_testing(generator_config)
+    traffic_configuration_data_testing(traffic_config)
+ 
