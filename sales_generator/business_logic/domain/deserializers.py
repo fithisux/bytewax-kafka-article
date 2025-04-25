@@ -1,6 +1,6 @@
 # create products and propensity_to_buy lists from CSV data file
 import csv
-from typing import Dict, List
+from typing import Dict, List, Any
 from datetime import datetime
 from business_logic.domain import modeling, exceptions
 
@@ -12,24 +12,24 @@ def to_bool(value):
 
 
 def product_schema_enforcement(bronze_data: Dict[str, str]) -> modeling.Product:
-    temp_dict = {}
+    temp_dict: Dict[str, Any] = {}
     temp_dict["event_time"] = datetime.now()
     temp_dict["product_id"] = bronze_data["ID"]
     temp_dict["category"] = bronze_data["Category"]
     temp_dict["item"] = bronze_data["Item"]
     temp_dict["size"] = bronze_data["Size"]
 
-    temp_dict["cogs"] = float(temp_dict["COGS"])
-    temp_dict["price"] = float(temp_dict["Price"])
-    temp_dict["inventory_level"] = float(temp_dict["Inventory"])
+    temp_dict["cogs"] = float(bronze_data["COGS"])
+    temp_dict["price"] = float(bronze_data["Price"])
+    temp_dict["inventory_level"] = float(bronze_data["Inventory"])
 
     temp_dict["contains_fruit"] = to_bool(bronze_data["ContainsFruit"])
     temp_dict["contains_veggies"] = to_bool(bronze_data["ContainsVeggies"])
     temp_dict["contains_nuts"] = to_bool(bronze_data["ContainsNuts"])
     temp_dict["contains_caffeine"] = to_bool(bronze_data["ContainsCaffeine"])
 
-    temp_dict["propensity_to_buy"] = int(temp_dict["PropensityToBuy"])
-    temp_dict["propensity_to_add_supplement"] = float(temp_dict["PropensityToAddSuplement"])
+    temp_dict["propensity_to_buy"] = int(bronze_data["PropensityToBuy"])
+    temp_dict["propensity_to_add_supplement"] = float(bronze_data["PropensityToAddSuplement"])
 
     return modeling.Product(**temp_dict)
 
