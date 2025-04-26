@@ -5,32 +5,30 @@ from datetime import datetime
 from sales_generator.business_logic.domain import modeling, exceptions
 from pathlib import Path
 
-# convert uppercase boolean values from CSV file to Python
-def to_bool(value):
-    if type(value) is str and str(value).lower() == "true":
-        return True
-    return False
+
 
 
 def product_schema_enforcement(bronze_data: Dict[str, str]) -> modeling.Product:
     temp_dict: Dict[str, Any] = {}
     temp_dict["event_time"] = datetime.now()
     temp_dict["product_id"] = bronze_data["ID"]
+    temp_dict["inventory"] = int(bronze_data["Inventory"])
+    temp_dict["min_inventory"] = int(bronze_data["MinInventory"])
+    temp_dict["restock_amount"] = int(bronze_data["RestockAmount"])
+    temp_dict["propensity_to_buy"] = int(bronze_data["PropensityToBuy"])
     temp_dict["category"] = bronze_data["Category"]
     temp_dict["item"] = bronze_data["Item"]
     temp_dict["size"] = bronze_data["Size"]
-
     temp_dict["cogs"] = float(bronze_data["COGS"])
     temp_dict["price"] = float(bronze_data["Price"])
-    temp_dict["inventory_surplus"] = float(bronze_data["InventorySurplus"])
-
-    temp_dict["contains_fruit"] = to_bool(bronze_data["ContainsFruit"])
-    temp_dict["contains_veggies"] = to_bool(bronze_data["ContainsVeggies"])
-    temp_dict["contains_nuts"] = to_bool(bronze_data["ContainsNuts"])
-    temp_dict["contains_caffeine"] = to_bool(bronze_data["ContainsCaffeine"])
-
-    temp_dict["propensity_to_buy"] = int(bronze_data["PropensityToBuy"])
+    temp_dict["member_probability"] = float(bronze_data["MemberProbability"])
+    temp_dict["member_discount"] = float(bronze_data["MemberDiscount"])
     temp_dict["propensity_to_add_supplement"] = float(bronze_data["PropensityToAddSuplement"])
+    temp_dict["supplement_cost"] = float(bronze_data["SupplementCost"])
+    temp_dict["quantity_weights"] = [
+        int(some_weight)
+        for some_weight in bronze_data["quantity_weights"].split(",")
+    ]
 
     return modeling.Product(**temp_dict)
 

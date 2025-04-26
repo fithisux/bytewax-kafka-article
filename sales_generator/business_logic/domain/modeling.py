@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
+from typing import List
 
 @dataclass
 class Inventory:
@@ -15,18 +16,20 @@ class Inventory:
 class Product:
     event_time: datetime
     product_id: str
+    inventory: int
+    min_inventory: int
+    restock_amount: int
+    propensity_to_buy: int
     category: str
     item: str
     size: str
     cogs: float
     price: float
-    inventory_surplus: int
-    contains_fruit: bool
-    contains_veggies: bool
-    contains_nuts: bool
-    contains_caffeine: bool
-    propensity_to_buy: int
+    member_probability: float
+    member_discount: float
     propensity_to_add_supplement: float
+    supplements_cost: float
+    quantity_weights: List[int]
 
 
 @dataclass

@@ -1,29 +1,30 @@
-ID,Category,Item,Size,COGS,Price,InventorySurplus,ContainsFruit,ContainsVeggies,ContainsNuts,ContainsCaffeine,PropensityToBuy,PropensityToAddSuplement
-CS01,Classic Smoothies,Sunrise Sunset,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS02,Classic Smoothies,Kiwi Quencher,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS03,Classic Smoothies,Paradise Point,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS04,Classic Smoothies,Sunny Day,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS05,Classic Smoothies,Mango Magic,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS06,Classic Smoothies,Blimey Limey,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS07,Classic Smoothies,Blueberry Bliss,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS08,Classic Smoothies,Rockin’ Raspberry,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS09,Classic Smoothies,Strawberry Limeade,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS10,Classic Smoothies,Peaches ‘n Silk,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-CS11,Classic Smoothies,Jetty Punch,24.0 oz.,1.50,4.99,65,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-SF01,Superfoods Smoothies,Island Green,24.0 oz.,2.10,5.99,40,TRUE,TRUE,FALSE,FALSE,1,0.20000000000000001
-SF02,Superfoods Smoothies,Totally Green,24.0 oz.,2.10,5.99,40,TRUE,TRUE,FALSE,FALSE,1,0.20000000000000001
-SF03,Superfoods Smoothies,Acai Berry Boost,24.0 oz.,2.10,5.99,40,TRUE,FALSE,FALSE,FALSE,1,0.20000000000000001
-SF04,Superfoods Smoothies,Pomegranate Plunge,24.0 oz.,2.10,5.99,40,TRUE,FALSE,FALSE,FALSE,1,0.20000000000000001
-SF05,Superfoods Smoothies,Caribbean C-Burst,24.0 oz.,2.10,5.99,40,TRUE,FALSE,FALSE,FALSE,1,0.20000000000000001
-SF06,Superfoods Smoothies,Get Up and Goji,24.0 oz.,2.10,5.99,40,TRUE,TRUE,FALSE,FALSE,1,0.20000000000000001
-SF07,Superfoods Smoothies,Detox Island Green,24.0 oz.,2.10,5.99,40,TRUE,TRUE,FALSE,FALSE,1,0.20000000000000001
-SC01,Supercharged Smoothies,Triple Berry Oat,24.0 oz.,2.70,5.99,25,TRUE,FALSE,FALSE,FALSE,1,0.20000000000000001
-SC02,Supercharged Smoothies,Peanut Paradise,24.0 oz.,2.70,5.99,25,FALSE,FALSE,FALSE,FALSE,1,0.20000000000000001
-SC03,Supercharged Smoothies,Health Nut,24.0 oz.,2.70,5.99,25,FALSE,FALSE,TRUE,FALSE,1,0.20000000000000001
-SC04,Supercharged Smoothies,Lean Machine,24.0 oz.,2.70,5.99,25,FALSE,TRUE,TRUE,TRUE,1,0.20000000000000001
-SC05,Supercharged Smoothies,Muscle Blaster,24.0 oz.,2.70,5.99,25,FALSE,FALSE,TRUE,TRUE,1,0.20000000000000001
-IS01,Indulgent Smoothies,Bahama Mama,24.0 oz.,2.20,5.49,50,TRUE,FALSE,FALSE,FALSE,1,0.29999999999999999
-IS02,Indulgent Smoothies,Peanut Butter Cup,24.0 oz.,2.20,5.49,50,FALSE,FALSE,TRUE,FALSE,1,0.29999999999999999
-IS03,Indulgent Smoothies,Beach Bum,24.0 oz.,2.20,5.49,50,TRUE,TRUE,FALSE,FALSE,1,0.29999999999999999
-IS04,Indulgent Smoothies,Mocha Madness,24.0 oz.,2.20,5.49,50,FALSE,FALSE,TRUE,TRUE,1,0.29999999999999999
+﻿ID,Category,Item,Size,COGS,Price,InventorySurplus,MemberProbability,PropensityToBuy,PropensityToAddSuplement
+CS01,Classic Smoothies,Sunrise Sunset,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS02,Classic Smoothies,Kiwi Quencher,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS03,Classic Smoothies,Paradise Point,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS04,Classic Smoothies,Sunny Day,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS05,Classic Smoothies,Mango Magic,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS06,Classic Smoothies,Blimey Limey,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS07,Classic Smoothies,Blueberry Bliss,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS08,Classic Smoothies,Rockin’ Raspberry,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS09,Classic Smoothies,Strawberry Limeade,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS10,Classic Smoothies,Peaches ‘n Silk,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+CS11,Classic Smoothies,Jetty Punch,24.0 oz.,1.50,4.99,65,0.5,1,0.29999999999999999
+SF01,Superfoods Smoothies,Island Green,24.0 oz.,2.10,5.99,40,0.5,1,0.20000000000000001
+SF02,Superfoods Smoothies,Totally Green,24.0 oz.,2.10,5.99,40,0.5,1,0.20000000000000001
+SF03,Superfoods Smoothies,Acai Berry Boost,24.0 oz.,2.10,5.99,40,0.5,1,0.20000000000000001
+SF04,Superfoods Smoothies,Pomegranate Plunge,24.0 oz.,2.10,5.99,40,0.5,1,0.20000000000000001
+SF05,Superfoods Smoothies,Caribbean C-Burst,24.0 oz.,2.10,5.99,40,0.5,1,0.20000000000000001
+SF06,Superfoods Smoothies,Get Up and Goji,24.0 oz.,2.10,5.99,40,0.5,1,0.20000000000000001
+SF07,Superfoods Smoothies,Detox Island Green,24.0 oz.,2.10,5.99,40,0.5,1,0.20000000000000001
+SC01,Supercharged Smoothies,Triple Berry Oat,24.0 oz.,2.70,5.99,25,0.5,1,0.20000000000000001
+SC02,Supercharged Smoothies,Peanut Paradise,24.0 oz.,2.70,5.99,25,0.5,1,0.20000000000000001
+SC03,Supercharged Smoothies,Health Nut,24.0 oz.,2.70,5.99,25,0.5,1,0.20000000000000001
+SC04,Supercharged Smoothies,Lean Machine,24.0 oz.,2.70,5.99,25,0.5,1,0.20000000000000001
+SC05,Supercharged Smoothies,Muscle Blaster,24.0 oz.,2.70,5.99,25,0.5,1,0.20000000000000001
+IS01,Indulgent Smoothies,Bahama Mama,24.0 oz.,2.20,5.49,50,0.5,1,0.29999999999999999
+IS02,Indulgent Smoothies,Peanut Butter Cup,24.0 oz.,2.20,5.49,50,0.5,1,0.29999999999999999
+IS03,Indulgent Smoothies,Beach Bum,24.0 oz.,2.20,5.49,50,0.5,1,0.29999999999999999
+IS04,Indulgent Smoothies,Mocha Madness,24.0 oz.,2.20,5.49,50,0.5,1,0.29999999999999999
+,,,,,,,,,
 

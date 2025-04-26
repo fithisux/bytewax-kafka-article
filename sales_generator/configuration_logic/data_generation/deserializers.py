@@ -20,10 +20,6 @@ def deserialize() -> Tuple[modeling.GeneratorConfig, modeling.TrafficConfig]:
         int(some_weight)
         for some_weight in config["SALES"]["transaction_items_weights"].split(",")
     ]
-    transaction_quantity_weights = [
-        int(some_weight)
-        for some_weight in config["SALES"]["transaction_quantity_weights"].split(",")
-    ]
     is_member_prob = float(config["SALES"]["is_member_prob"])
     club_member_discount = float(config["SALES"]["club_member_discount"])
     supplements_cost = float(config["SALES"]["supplements_cost"])
