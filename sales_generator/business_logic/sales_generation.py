@@ -59,7 +59,7 @@ def fix_product_inventory(
             product.product_id,
             product.inventory_surplus + generator_config.min_inventor,
             generator_config.restock_amount,
-            new_surplus + + generator_config.min_inventor,
+            new_surplus + generator_config.min_inventor,
         )
         product.inventory_surplus = new_surplus
     return new_inventory
