@@ -20,7 +20,7 @@ class Product:
     size: str
     cogs: float
     price: float
-    inventory_level: int
+    inventory_surplus: int
     contains_fruit: bool
     contains_veggies: bool
     contains_nuts: bool

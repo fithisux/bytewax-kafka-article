@@ -22,7 +22,7 @@ def product_schema_enforcement(bronze_data: Dict[str, str]) -> modeling.Product:
 
     temp_dict["cogs"] = float(bronze_data["COGS"])
     temp_dict["price"] = float(bronze_data["Price"])
-    temp_dict["inventory_level"] = float(bronze_data["Inventory"])
+    temp_dict["inventory_surplus"] = float(bronze_data["InventorySurplus"])
 
     temp_dict["contains_fruit"] = to_bool(bronze_data["ContainsFruit"])
     temp_dict["contains_veggies"] = to_bool(bronze_data["ContainsVeggies"])
@@ -35,7 +35,7 @@ def product_schema_enforcement(bronze_data: Dict[str, str]) -> modeling.Product:
     return modeling.Product(**temp_dict)
 
 
-def product_data_testing(silver_product: modeling.Product, min_inventory_level: int) -> None:
+def product_data_testing(silver_product: modeling.Product) -> None:
     if(silver_product.propensity_to_buy <= 0):
         raise exceptions.NoPositiveIntegerPropensityToBuyException()
     if( (silver_product.propensity_to_add_supplement < 0) or (silver_product.propensity_to_add_supplement > 1) ):
@@ -44,10 +44,8 @@ def product_data_testing(silver_product: modeling.Product, min_inventory_level: 
         raise exceptions.NoPositivePriceException()
     if(silver_product.cogs <= 0):
         raise exceptions.NoPositiveCOGSException()
-    if(silver_product.inventory_level <= 0):
-        raise exceptions.NoPositiveInventoryException()
-    if(silver_product.inventory_level < min_inventory_level):
-        raise exceptions.TooSmallInventoryLevelException()
+    if(silver_product.inventory_surplus <= 0):
+        raise exceptions.NoPositiveInventorySurplusException()
 
 def products_data_testing(silver_products: List[modeling.Product]) -> None:
     if len(silver_products) == 0:
@@ -59,14 +57,14 @@ def products_data_testing(silver_products: List[modeling.Product]) -> None:
         raise exceptions.NonUniqueProductIdsException()
 
 
-def deserialize_product_list(min_inventory_level: int) -> List[modeling.Product]:
+def deserialize_product_list() -> List[modeling.Product]:
     products : List[modeling.Product] = []
     with open(Path(__file__).parent / "products.csv", "r", newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             print(f"ROW is {row}")
             product = product_schema_enforcement(row)
-            product_data_testing(product, min_inventory_level)
+            product_data_testing(product)
             products.append(product)
 
     products_data_testing(products)

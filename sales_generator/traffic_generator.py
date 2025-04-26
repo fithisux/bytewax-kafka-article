@@ -20,9 +20,7 @@ def publish_to_kafka(topic, message, kafka_config: KafkaConfig):
 def generate_traffic(kafka_config: KafkaConfig):
     generator_config, traffic_config = configuration.get_config()
 
-    products = deserializers.deserialize_product_list(
-        generator_config.min_inventory
-    )
+    products = deserializers.deserialize_product_list()
 
     for product in products:
         print(f"Publishing {product}")

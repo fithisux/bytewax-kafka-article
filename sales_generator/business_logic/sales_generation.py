@@ -41,7 +41,7 @@ def generate_sale(
             add_supplement,
             supplement_price,
         )
-        product.inventory_level = product.inventory_level - quantity
+        product.inventory_surplus = product.inventory_surplus - quantity
         new_inventory = fix_product_inventory(product, generator_config)
         return (new_purchase, new_inventory)
 
@@ -52,14 +52,14 @@ def fix_product_inventory(
     product: modeling.Product, generator_config: GeneratorConfig
 ) -> Optional[modeling.Inventory]:
     new_inventory: Optional[modeling.Inventory] = None
-    if product.inventory_level < generator_config.min_inventory:
-        new_level = product.inventory_level + generator_config.restock_amount
+    if product.inventory_surplus < 0:
+        new_surplus = product.inventory_surplus + generator_config.min_inventory + generator_config.restock_amount
         new_inventory = modeling.Inventory(
             datetime.now(),
             product.product_id,
-            product.inventory_level,
+            product.inventory_surplus + generator_config.min_inventor,
             generator_config.restock_amount,
-            new_level,
+            new_surplus + + generator_config.min_inventor,
         )
-        product.inventory_level = new_level
+        product.inventory_surplus = new_surplus
     return new_inventory
