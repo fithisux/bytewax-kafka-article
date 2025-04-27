@@ -1,0 +1,32 @@
+ID,InitialInventory,PropensityToBuy,Category,Item,Size,COGS,Price,MemberProbability,MemberDiscount,PropensityToAddSuplement,SupplementCost,MinInventory,RestockAmount,QuantityWeights
+CS01,65,1,Classic Smoothies,Sunrise Sunset,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS02,65,1,Classic Smoothies,Kiwi Quencher,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS03,65,1,Classic Smoothies,Paradise Point,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS04,65,1,Classic Smoothies,Sunny Day,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS05,65,1,Classic Smoothies,Mango Magic,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS06,65,1,Classic Smoothies,Blimey Limey,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS07,65,1,Classic Smoothies,Blueberry Bliss,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS08,65,1,Classic Smoothies,Rockin’ Raspberry,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS09,65,1,Classic Smoothies,Strawberry Limeade,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS10,65,1,Classic Smoothies,Peaches ‘n Silk,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+CS11,65,1,Classic Smoothies,Jetty Punch,24.0 oz.,1.50,4.99,0.5,0.1,0.3,1.99,10,15,50.0
+SF01,40,1,Superfoods Smoothies,Island Green,24.0 oz.,2.10,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SF02,40,1,Superfoods Smoothies,Totally Green,24.0 oz.,2.10,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SF03,40,1,Superfoods Smoothies,Acai Berry Boost,24.0 oz.,2.10,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SF04,40,1,Superfoods Smoothies,Pomegranate Plunge,24.0 oz.,2.10,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SF05,40,1,Superfoods Smoothies,Caribbean C-Burst,24.0 oz.,2.10,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SF06,40,1,Superfoods Smoothies,Get Up and Goji,24.0 oz.,2.10,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SF07,40,1,Superfoods Smoothies,Detox Island Green,24.0 oz.,2.10,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SC01,25,1,Supercharged Smoothies,Triple Berry Oat,24.0 oz.,2.70,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SC02,25,1,Supercharged Smoothies,Peanut Paradise,24.0 oz.,2.70,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SC03,25,1,Supercharged Smoothies,Health Nut,24.0 oz.,2.70,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SC04,25,1,Supercharged Smoothies,Lean Machine,24.0 oz.,2.70,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+SC05,25,1,Supercharged Smoothies,Muscle Blaster,24.0 oz.,2.70,5.99,0.5,0.1,0.2,1.99,10,15,50.0
+IS01,50,1,Indulgent Smoothies,Bahama Mama,24.0 oz.,2.20,5.49,0.5,0.1,0.3,1.99,10,15,50.0
+IS02,50,1,Indulgent Smoothies,Peanut Butter Cup,24.0 oz.,2.20,5.49,0.5,0.1,0.3,1.99,10,15,50.0
+IS03,50,1,Indulgent Smoothies,Beach Bum,24.0 oz.,2.20,5.49,0.5,0.1,0.3,1.99,10,15,50.0
+IS04,50,1,Indulgent Smoothies,Mocha Madness,24.0 oz.,2.20,5.49,0.5,0.1,0.3,1.99,10,15,50.0
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+

@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import List
 
 @dataclass
-class Inventory:
+class Restock:
     event_time: datetime
     product_id: str
     existing_level: int

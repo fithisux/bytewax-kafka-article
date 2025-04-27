@@ -6,7 +6,7 @@
 
 import json
 from kafka import KafkaConsumer
-from sales_generator.configuration_logic import kafkaparams
+from stream_generator.configuration_logic import kafkaparams
 import dataclasses
 
 

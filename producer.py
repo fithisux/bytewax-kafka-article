@@ -1,5 +1,5 @@
-from sales_generator import traffic_generator
-from sales_generator.configuration_logic import kafkaparams
+from stream_generator import traffic_generator
+from stream_generator.configuration_logic import kafkaparams
 
 import dataclasses
 
