@@ -28,7 +28,7 @@ class Product:
     member_probability: float
     member_discount: float
     propensity_to_add_supplement: float
-    supplements_cost: float
+    supplement_cost: float
     quantity_weights: List[int]
 
 

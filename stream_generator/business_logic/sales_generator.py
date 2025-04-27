@@ -5,7 +5,7 @@ from datetime import datetime
 
 def generate_choice_from_weights(weights: List[int]) -> int:
     population = list(range(0, len(weights)))
-    return random.choices(population, weights, k=1)[0]
+    return 1 + random.choices(population, weights, k=1)[0]
 
 
 def generate_sales(
@@ -22,11 +22,11 @@ def generate_sales(
         member_discount = product.member_discount if is_member else 0.00
         # reduces but not eliminates risk of duplicate products in same transaction - TODO: improve this method
         
-        quantity = 1 + generate_choice_from_weights(
+        quantity = generate_choice_from_weights(
             product.quantity_weights
         )
         add_supplement = product.propensity_to_add_supplement <= random.random()
-        supplement_price = product.supplements_cost if add_supplement else 0.00
+        supplement_price = product.supplement_cost if add_supplement else 0.00
         new_purchase = modeling.Purchase(
             transaction_time,
             str(abs(hash(transaction_time))),
