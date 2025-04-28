@@ -1,7 +1,7 @@
 from bytewax.connectors.kafka import operators as  KafkaSinkMessage
 import json
 import logging
-from businesslogic import domain_model
+from bytewax_demo.businesslogic import domain_model
 
 logger = logging.getLogger(__name__)
 
@@ -9,13 +9,15 @@ def make_subtotal(message: KafkaSinkMessage):
     try:
         json_str = message.value.decode("utf-8")
         data = json.loads(json_str)
+        print(data)
         purchase = domain_model.Purchase(**data)
+        total_purchase = purchase.quantity * (purchase.price + purchase.add_supplements) * (1.0-purchase.member_discount) 
         return domain_model.SubTotal(
             purchase.product_id,
             purchase.transaction_time,
             1,
             purchase.quantity,
-            purchase.total_purchase,
+            total_purchase,
         )
     except StopIteration:
         logger.info("No more documents to fetch from the client.")

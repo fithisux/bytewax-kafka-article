@@ -4,7 +4,7 @@ from bytewax.connectors.kafka import operators as kop, KafkaSinkMessage
 from bytewax import operators as op
 from bytewax.dataflow import Dataflow
 import logging
-from businesslogic import subtotals
+from bytewax_demo.businesslogic import subtotals
 from confluent_kafka import OFFSET_STORED
 from bytewax.connectors.stdio import StdOutSink
 

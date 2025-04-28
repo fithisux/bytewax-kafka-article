@@ -6,14 +6,13 @@
 
 import json
 from kafka import KafkaConsumer
-from stream_generator.configuration_logic import kafkaparams
+from stream_generator.configuration_logic.kafkaparams import configuration
 import dataclasses
 
 
 def main():
     # choose any or all topics
-    # topics = (topic_purchases)
-    kafka_config = kafkaparams.configuration.get_config()
+    kafka_config = configuration.get_config()
 
     topics = (
         kafka_config.topic_products,
@@ -25,7 +24,7 @@ def main():
         *topics,
         value_deserializer=lambda m: json.loads(m.decode("utf-8")),
         auto_offset_reset="earliest",
-        dataclasses.asdict(kafka_config),
+        bootstrap_servers=kafka_config.kafka_connection_config.bootstrap_servers,
     )
 
     for message in consumer:

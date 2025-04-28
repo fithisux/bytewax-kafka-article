@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from decimal import Decimal
+from datetime import datetime
 
 @dataclass
 class SubTotal:
@@ -16,15 +17,15 @@ class Total:
     sales: Decimal
 
 @dataclass
+
 class Purchase:
+    transaction_time: datetime
     transaction_id: str
-    transaction_time: str
     product_id: str
-    is_member: bool
-    add_supplements: bool
+    price: float
     quantity: int
-    price: Decimal
-    member_discount: Decimal
-    supplement_price: Decimal
-    total_purchase: Decimal
+    is_member: bool
+    member_discount: float
+    add_supplements: bool
+    supplement_price: float
 

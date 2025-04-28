@@ -6,7 +6,6 @@ import json
 import dataclasses
 import time
 import random
-from typing import List
 
 
 def publish_to_kafka(topic, message, kafka_config: KafkaConfig):
@@ -15,7 +14,7 @@ def publish_to_kafka(topic, message, kafka_config: KafkaConfig):
         **dataclasses.asdict(kafka_config.kafka_connection_config),
     )
     key = topic.split(".")[1]
-    producer.send(topic, key=key.encode("utf-8"), value=message)
+    producer.send(topic, key=key.encode("utf-8"), value=dataclasses.asdict(message))
     print("Topic: {0}, Value: {1}".format(topic, message))
 
 

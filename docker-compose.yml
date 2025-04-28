@@ -35,14 +35,14 @@ services:
       - kafka
     networks:
       - streaming-stack
-  jupyter:
-    image: quay.io/jupyter/datascience-notebook:latest
-    ports:
-      - "8888:8888"
-    volumes:
-      - "jupyter_data:/home/jovyan/work"
-    networks:
-      - streaming-stack
+  # jupyter:
+  #   image: quay.io/jupyter/datascience-notebook:latest
+  #   ports:
+  #     - "8888:8888"
+  #   volumes:
+  #     - "jupyter_data:/home/jovyan/work"
+  #   networks:
+  #     - streaming-stack
 
 volumes:
   kafka_data:
