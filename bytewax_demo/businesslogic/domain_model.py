@@ -8,13 +8,13 @@ class SubTotal:
     event_time: str
     transactions: int
     quantities: int
-    sales: Decimal
+    sales: float
 
 @dataclass
 class Total:
     transactions: int
     quantities: int
-    sales: Decimal
+    sales: float
 
 @dataclass
 

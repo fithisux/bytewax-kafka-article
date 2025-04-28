@@ -9,9 +9,8 @@ def make_subtotal(message: KafkaSinkMessage):
     try:
         json_str = message.value.decode("utf-8")
         data = json.loads(json_str)
-        print(data)
         purchase = domain_model.Purchase(**data)
-        total_purchase = purchase.quantity * (purchase.price + purchase.add_supplements) * (1.0-purchase.member_discount) 
+        total_purchase = purchase.quantity * (purchase.price + purchase.supplement_price) * (1.0-purchase.member_discount) 
         return domain_model.SubTotal(
             purchase.product_id,
             purchase.transaction_time,
