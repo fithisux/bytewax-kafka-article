@@ -16,7 +16,7 @@ class KafkaConfig:
     kafka_connection_config: KafkaConnectionConfig
     topic_products: str
     topic_purchases: str
-    topic_inventories: str
+    topic_restocks: str
 
 
 
@@ -36,7 +36,7 @@ def get_config() -> KafkaConfig:
 
     extra_configs['topic_products'] = config["KAFKA"]["topic_products"]
     extra_configs['topic_purchases'] = config["KAFKA"]["topic_purchases"]
-    extra_configs['topic_inventories'] = config["KAFKA"]["topic_inventories"]
+    extra_configs['topic_restocks'] = config["KAFKA"]["topic_restocks"]
 
 
     # print("configs: {0}".format(str(configs)))

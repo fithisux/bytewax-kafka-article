@@ -43,7 +43,7 @@ def generate_traffic(kafka_config: KafkaConfig):
             if new_restock is not None:
                 print(f"Publishing {new_restock}")
                 publish_to_kafka(
-                    kafka_config.topic_inventories, new_restock, kafka_config
+                    kafka_config.topic_restocks, new_restock, kafka_config
                 )
 
         time.sleep(

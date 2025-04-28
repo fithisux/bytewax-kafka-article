@@ -16,7 +16,6 @@ print(
     f"""
 {os.environ.get("BOOTSTRAP_SERVERS")}
 {os.environ.get("INPUT_TOPIC")}
-{os.environ.get("OUTPUT_TOPIC")}
 {os.environ.get("APPLICATION_ID")}
 {os.environ.get("COMMIT_INTERVAL_MS_CONFIG")}
 """
@@ -24,7 +23,6 @@ print(
 
 bootstrap_servers_csv = os.environ.get("BOOTSTRAP_SERVERS")
 input_topic = os.environ.get("INPUT_TOPIC")
-output_topic = os.environ.get("OUTPUT_TOPIC")
 
 brokers = bootstrap_servers_csv.split(";") if bootstrap_servers_csv is not None else []
 
@@ -60,11 +58,4 @@ op.inspect("by_product_id_output", keyed_subtotals)
 running_totals = op.stateful_map("running_total", keyed_subtotals, subtotals.calc_running_total)
 op.inspect("running_total_output", running_totals)
 
-# kop.output("kafka-out", stateful, brokers=brokers, topic=output_topic)
 op.output("out3", running_totals, StdOutSink())
-
-
-# inp = kop.input("in", flow, brokers=brokers,
-# batch_size=2,
-# topics=[input_topic], add_config=add_config)
-# op.output("out", inp.oks, StdOutSink())

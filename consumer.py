@@ -18,7 +18,7 @@ def main():
     topics = (
         kafka_config.topic_products,
         kafka_config.topic_purchases,
-        kafka_config.topic_inventories,
+        kafka_config.topic_restocks,
     )
 
     consumer = KafkaConsumer(
