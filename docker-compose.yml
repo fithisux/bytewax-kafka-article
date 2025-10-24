@@ -6,22 +6,23 @@ version: "3.9"
 
 services:
   kafka:
-    image: docker.io/bitnami/kafka:latest
+    image: apache/kafka:latest
     ports:
       - "9092:9092"
     volumes:
-      - "kafka_data:/bitnami"
+      - "./kafkadata:/tmp/kafka-logs"
     environment:
       # KRaft settings
-      - KAFKA_CFG_NODE_ID=0
-      - KAFKA_CFG_PROCESS_ROLES=controller,broker
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      - KAFKA_NODE_ID=0
+      - KAFKA_PROCESS_ROLES=controller,broker
+      - KAFKA_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
       # Listeners
-      - KAFKA_CFG_LISTENERS=LISTENER_BOB://kafka:29092,LISTENER_FRED://kafka:9092,CONTROLLER://:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_BOB:PLAINTEXT,LISTENER_FRED:PLAINTEXT,CONTROLLER:PLAINTEXT
-      - KAFKA_CFG_ADVERTISED_LISTENERS=LISTENER_BOB://kafka:29092,LISTENER_FRED://localhost:9092
-      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=LISTENER_BOB
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_LISTENERS=LISTENER_BOB://kafka:29092,LISTENER_FRED://kafka:9092,CONTROLLER://:9093
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_BOB:PLAINTEXT,LISTENER_FRED:PLAINTEXT,CONTROLLER:PLAINTEXT
+      - KAFKA_ADVERTISED_LISTENERS=LISTENER_BOB://kafka:29092,LISTENER_FRED://localhost:9092
+      - KAFKA_INTER_BROKER_LISTENER_NAME=LISTENER_BOB
+      - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      #- KAFKA_LOG_DIRS=/kafka-logs
     networks:
       - streaming-stack
   kafka-ui:
