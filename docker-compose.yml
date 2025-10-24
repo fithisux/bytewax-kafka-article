@@ -22,7 +22,7 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=LISTENER_BOB://kafka:29092,LISTENER_FRED://localhost:9092
       - KAFKA_INTER_BROKER_LISTENER_NAME=LISTENER_BOB
       - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      #- KAFKA_LOG_DIRS=/kafka-logs
+      #- KAFKA_LOG_DIRS=/tmp/kafka-logs
     networks:
       - streaming-stack
   kafka-ui:
